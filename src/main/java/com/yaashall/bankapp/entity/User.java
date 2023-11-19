@@ -3,7 +3,9 @@ package com.yaashall.bankapp.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.Arrays;
 import java.util.List;
 
 @Getter
@@ -36,7 +38,7 @@ public class User {
             strategy = GenerationType.SEQUENCE,
             generator = "user_sequence"
     )
-    @Column(name = "id",
+    @Column(name = "user_id",
             updatable = false,
             nullable = false,
             columnDefinition = "bigint",
@@ -99,16 +101,15 @@ public class User {
     @Column(name = "password",
             nullable = false,
             columnDefinition = "text",
-            length = 12,
-            unique = true
+            length = 12
     )
     private String password;
 
-    @OneToMany(
+    @OneToOne(
             mappedBy = "user",
-            cascade = {CascadeType.PERSIST, CascadeType.REMOVE},
-            fetch = FetchType.LAZY,
-            orphanRemoval = true
+            orphanRemoval = true,
+            cascade = {CascadeType.ALL}
     )
-    private List<Account> accounts;
+    private Account account;
+
 }

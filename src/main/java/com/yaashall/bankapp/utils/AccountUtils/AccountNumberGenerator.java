@@ -7,7 +7,7 @@ package com.yaashall.bankapp.utils.AccountUtils;
 
 import java.security.SecureRandom;
 import java.time.Year;
-public class AccountNumberGenrator {
+public class AccountNumberGenerator {
 
 
     private static final SecureRandom random = new SecureRandom();

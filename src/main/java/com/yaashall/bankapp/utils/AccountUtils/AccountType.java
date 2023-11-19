@@ -1,4 +1,4 @@
-package com.yaashall.bankapp.entity;
+package com.yaashall.bankapp.utils.AccountUtils;
 
 public enum AccountType {
     SAVINGS("Savings Account"),

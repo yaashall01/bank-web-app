@@ -1,5 +1,7 @@
 package com.yaashall.bankapp.dto;
 
+import com.yaashall.bankapp.utils.AccountUtils.AccountStatus;
+import com.yaashall.bankapp.utils.AccountUtils.AccountType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -11,9 +13,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class AccountInfo {
 
-
     private String accountNumber;
-    private String accountName;
-    private String accountType;
+    private AccountType accountType;
+    private AccountStatus accountStatus;
     private String accountBalance;
 }

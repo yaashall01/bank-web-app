@@ -1,5 +1,7 @@
 package com.yaashall.bankapp.entity;
 
+import com.yaashall.bankapp.utils.AccountUtils.AccountStatus;
+import com.yaashall.bankapp.utils.AccountUtils.AccountType;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
@@ -15,7 +17,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @ToString
 @Entity(name = "Account")
-@Table(name = "accounts",
+@Table(name = "account",
         uniqueConstraints = @UniqueConstraint(
                 name = "account_number_unique",
                 columnNames = "account_number"
@@ -43,7 +45,7 @@ public class Account {
     private String accountNumber;
 
     @Column(
-            name = "balence",
+            name = "balance",
             columnDefinition = "decimal(10,2) default '0.00'"
     )
     private BigDecimal balance;
@@ -54,13 +56,14 @@ public class Account {
             columnDefinition = "text"
     )
     @Enumerated(EnumType.STRING)
-    private AccountStatus status;
+    private AccountStatus accountStatus;
 
     @Column(
             name = "account_type",
             columnDefinition = "text"
     )
-    private String accountType;
+    @Enumerated(EnumType.STRING)
+    private AccountType accountType;
 
     @CreationTimestamp
     private LocalDateTime createdOn;
@@ -68,11 +71,13 @@ public class Account {
     @UpdateTimestamp
     private LocalDateTime updatedOn;
 
-    @ManyToOne
+    @OneToOne(
+            fetch = FetchType.LAZY
+    )
     @JoinColumn(
-            name = "user_id",
+            name = "owner_id",
+            referencedColumnName = "user_id",
             nullable = false,
-            referencedColumnName = "id",
             foreignKey = @ForeignKey(
                     name = "user_account_fk"
             )
