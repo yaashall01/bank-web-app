@@ -1,57 +1,36 @@
 package com.yaashall.bankapp.service;
 
-import com.yaashall.bankapp.dto.AccountInfo;
 import com.yaashall.bankapp.dto.BankResponse;
 import com.yaashall.bankapp.dto.UserRequest;
+import com.yaashall.bankapp.dto.UserResponse;
 import com.yaashall.bankapp.entity.User;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface UserService {
 
 
-    User createUser(UserRequest userRequest);
-
-
     /**
-     * Create a user
+     * Sign up a user
      *
      * @param userRequest
-     * @return
+     * @return Bankresponse
      */
-    //BankResponse createUser(UserRequest userRequest);
+    BankResponse registerUser(UserRequest userRequest);
 
-    /**
-     * Get a user
-     *
-     * @param accountNumber
-     * @return
-     */
-    //BankResponse getUser(String accountNumber);
 
-    /**
-     * Update a user
-     *
-     * @param accountNumber
-     * @param userRequest
-     * @return
-     */
-    //BankResponse updateUser(String accountNumber, UserRequest userRequest);
+    List<UserResponse> getAllUsers();
 
-    /**
-     * Delete a user
-     *
-     * @param accountNumber
-     * @return
-     */
-    //BankResponse deleteUser(String accountNumber);
+    Optional<User> getUserById(Long id);
 
-    /**
-     * Get all accounts for a user
-     *
-     * @param userId
-     * @return
-     */
-    //List<AccountInfo> getAccountsForUser(Long userId);
+    User getUserByEmail(String email);
+
+
+    User updateUser(Long id, UserRequest userRequest);
+
+    boolean deleteUser(Long id);
+
+
 
 }

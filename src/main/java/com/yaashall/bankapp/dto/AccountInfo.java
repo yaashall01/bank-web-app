@@ -1,7 +1,7 @@
 package com.yaashall.bankapp.dto;
 
-import com.yaashall.bankapp.utils.AccountUtils.AccountStatus;
-import com.yaashall.bankapp.utils.AccountUtils.AccountType;
+import com.yaashall.bankapp.utils.accountutils.AccountStatus;
+import com.yaashall.bankapp.utils.accountutils.AccountType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

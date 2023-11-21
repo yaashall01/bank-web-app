@@ -1,4 +1,4 @@
-package com.yaashall.bankapp.utils.BankUtils;
+package com.yaashall.bankapp.utils.bankutils;
 
 public enum BankResp {
 
@@ -11,7 +11,18 @@ public enum BankResp {
     ACCOUNT_DEACTIVATED("007", "Account deactivated successfully"),
     ACCOUNT_SUSPENDED("008", "Account suspended successfully"),
     ACCOUNT_REACTIVATED("009", "Account reactivated successfully"),
-    ACCOUNT_CLOSED("010", "Account closed successfully");
+    ACCOUNT_CLOSED("010", "Account closed successfully"),
+
+    USER_EXISTS("011", "User already exists"),
+    USER_NOT_FOUND("012", "User not found"),
+    USER_CREATED("013", "User created successfully"),
+    USER_UPDATED("014", "User updated successfully"),
+    USER_DELETED("015", "User deleted successfully"),
+
+    EMAIL_EXISTS("016", "Email already exists");
+
+
+
 
     private final String respCode;
     private final String respMessage;

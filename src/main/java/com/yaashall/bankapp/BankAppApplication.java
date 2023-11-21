@@ -1,8 +1,8 @@
 package com.yaashall.bankapp;
 
 import com.yaashall.bankapp.entity.Account;
-import com.yaashall.bankapp.utils.AccountUtils.AccountStatus;
-import com.yaashall.bankapp.utils.AccountUtils.AccountType;
+import com.yaashall.bankapp.utils.accountutils.AccountStatus;
+import com.yaashall.bankapp.utils.accountutils.AccountType;
 import com.yaashall.bankapp.entity.User;
 import com.yaashall.bankapp.repository.AccountRepository;
 import com.yaashall.bankapp.repository.UserRepository;

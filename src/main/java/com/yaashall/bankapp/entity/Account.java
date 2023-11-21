@@ -1,7 +1,8 @@
 package com.yaashall.bankapp.entity;
 
-import com.yaashall.bankapp.utils.AccountUtils.AccountStatus;
-import com.yaashall.bankapp.utils.AccountUtils.AccountType;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.yaashall.bankapp.utils.accountutils.AccountStatus;
+import com.yaashall.bankapp.utils.accountutils.AccountType;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
@@ -82,5 +83,6 @@ public class Account {
                     name = "user_account_fk"
             )
     )
+    @JsonBackReference
     private User user;
 }

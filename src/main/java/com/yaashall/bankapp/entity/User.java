@@ -1,12 +1,17 @@
 package com.yaashall.bankapp.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
-
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
+
 
 @Getter
 @Setter
@@ -96,13 +101,16 @@ public class User {
             nullable = false,
             columnDefinition = "text"
     )
+    @Email(message = "Invalid email address")
     private String email;
 
     @Column(name = "password",
             nullable = false,
-            columnDefinition = "text",
-            length = 12
+            columnDefinition = "text"
     )
+    @NotNull(message = "Password cannot be null")
+    @Size(min = 6, max = 20, message = "Password must be between 6 and 20 characters")
+    @Pattern(regexp = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{6,20}$", message = "Password must contain at least one digit, one lower case, one upper case, and be between 6 and 20 characters long")
     private String password;
 
     @OneToOne(
@@ -110,6 +118,7 @@ public class User {
             orphanRemoval = true,
             cascade = {CascadeType.ALL}
     )
+    @JsonManagedReference
     private Account account;
 
 }

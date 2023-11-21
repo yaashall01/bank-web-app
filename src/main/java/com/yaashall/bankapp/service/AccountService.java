@@ -2,7 +2,6 @@ package com.yaashall.bankapp.service;
 
 
 import com.yaashall.bankapp.dto.BankResponse;
-import com.yaashall.bankapp.entity.Account;
 import com.yaashall.bankapp.entity.User;
 
 public interface AccountService {
@@ -17,6 +16,12 @@ public interface AccountService {
      * @return a response indicating the success or failure of the operation
      */
     BankResponse createAccountForUser(User user);
+
+    BankResponse createAccountForUser(String email);
+
+
+    BankResponse addAccountToUser(Long userId);
+
 
     /**
      * Get an account
