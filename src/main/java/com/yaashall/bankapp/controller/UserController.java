@@ -20,9 +20,6 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @Autowired
-    private AccountService accountService;
-
     @RequestMapping("/signup")
     @ResponseStatus(HttpStatus.CREATED)
     public BankResponse signUp(@RequestBody UserRequest userRequest){

@@ -2,6 +2,7 @@ package com.yaashall.bankapp.service;
 
 import com.yaashall.bankapp.dto.AccountInfo;
 import com.yaashall.bankapp.dto.BankResponse;
+import com.yaashall.bankapp.dto.EmailMessage;
 import com.yaashall.bankapp.entity.Account;
 import com.yaashall.bankapp.entity.User;
 import com.yaashall.bankapp.repository.AccountRepository;
@@ -25,6 +26,9 @@ public class AccountServiceImpl implements AccountService {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private EmailService emailService;
 
 
     @Transactional
@@ -64,6 +68,15 @@ public class AccountServiceImpl implements AccountService {
 
         // Save the new account
         Account savedAccount = accountRepository.save(newAccount);
+
+        // Send email to user
+        EmailMessage emailMessage = EmailMessage.builder()
+                .toAddress(user.getEmail())
+                .subject("Account Creation")
+                .body("Your account has been created successfully. Your account number is " + savedAccount.getAccountNumber())
+                .isHtml(true)
+                .build();
+        emailService.accountCreationEmail(emailMessage);
 
         AccountInfo accountInfo = AccountInfo.builder()
                 .accountNumber(savedAccount.getAccountNumber())
@@ -127,6 +140,8 @@ public class AccountServiceImpl implements AccountService {
                 .accountStatus(savedAccount.getAccountStatus())
                 .accountBalance(savedAccount.getBalance().toString())
                 .build();
+
+
 
         return BankResponse.builder()
                 .respCode(BankResp.ACCOUNT_CREATED.getRespCode())

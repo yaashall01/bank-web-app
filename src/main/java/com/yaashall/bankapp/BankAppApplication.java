@@ -6,6 +6,7 @@ import com.yaashall.bankapp.utils.accountutils.AccountType;
 import com.yaashall.bankapp.entity.User;
 import com.yaashall.bankapp.repository.AccountRepository;
 import com.yaashall.bankapp.repository.UserRepository;
+import io.github.cdimascio.dotenv.Dotenv;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -32,8 +33,8 @@ public class BankAppApplication {
 	private AccountRepository accountRepository;
 
 	public static void main(String[] args) {
+		Dotenv dotenv = Dotenv.load();
 		SpringApplication.run(BankAppApplication.class, args);
-
 	}
 
 	@Bean

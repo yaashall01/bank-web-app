@@ -1,9 +1,42 @@
 spring:
   datasource:
     url: jdbc:postgresql://localhost:5432/banksys
-    username: postgres
-    password: root
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+    hikari:
+      maximum-pool-size: 10
+      minimum-idle: 5
+      idle-timeout: 30000
+      max-lifetime: 1800000
+      connection-timeout: 30000
+      pool-name: BankSysHikariCP
   jpa:
     hibernate:
       ddl-auto: create-drop
+      format_sql: true
+      jdbc:
+        batch_size: 20
+        fetch_size: 100
     show-sql: true
+    open-in-view: false
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: ${MAIL_USERNAME}
+    password: ${MAIL_PASSWORD}
+    properties:
+      mail:
+        smtp:
+          auth: true # use authentication
+          starttls: # crypt connection
+            enable: true
+            required: true
+logging:
+  level:
+    org.springframework: INFO
+    com.yaashall.bankapp: DEBUG
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health, info, metrics
