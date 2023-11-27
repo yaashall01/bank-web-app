@@ -66,7 +66,6 @@ public class AccountServiceImpl implements AccountService {
                 .user(user)
                 .build();
 
-        // Save the new account
         Account savedAccount = accountRepository.save(newAccount);
 
         // Send email to user
@@ -76,6 +75,7 @@ public class AccountServiceImpl implements AccountService {
                 .body("Your account has been created successfully. Your account number is " + savedAccount.getAccountNumber())
                 .isHtml(true)
                 .build();
+
         emailService.accountCreationEmail(emailMessage);
 
         AccountInfo accountInfo = AccountInfo.builder()
